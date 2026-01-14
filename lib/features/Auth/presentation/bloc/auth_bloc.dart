@@ -9,7 +9,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<Login>((event, emit) async {
       if (await internetConnectionChecker() == false) {
-        emit(const Error(message: "لا يوجد اتصال بالانترنت "));
+        return emit(const Error(message: "لا يوجد اتصال بالانترنت "));
       }
       emit(Loading());
       await Future.delayed(const Duration(seconds: 3));
